@@ -12,7 +12,7 @@ class App extends React.Component {
   }
   
   componentDidMount() {//depois que Loading...
-    fetch( "http:127.0.0.1:3002" )//antes -https://snow-midi-avocado.glitch.me/messages"
+    fetch( "http://127.0.0.1:3002/messages" )//antes -https://snow-midi-avocado.glitch.me/messages"
       .then(res => res.json())//qndo recebe o resultado convert em json
       .then(//converte o resultado(result vira json) alterando o estado das variaveis
         (result) => {
@@ -56,14 +56,15 @@ class App extends React.Component {
       return (
       <div>Primeira mensagem : {result.chat[0].message} <br/> Id da segunda mensagem: {result.chat[1].id}
       <ul>
-          {result.chat(item => (//imprimir o valor de todos os elemento .map(é um método), cada elemento da lista é um "item"
+          {result.chat.map(item => (//imprimir o valor de todos os elemento .map(é um método), cada elemento da lista é um "item"
             <li key={item.id}>
               {item.message}
             </li>
           ))}
                 </ul>
                 <div>
-                   <input name="msg" value={this.state.msg} >Digite sua mensagem: </input> 
+                Digite sua mensagem: <input name="msg" value={this.state.msg} /> 
+                <br/>
                 <button onClick={this.handleEnviar}>Enviar: </button>
                   </div>
                
@@ -125,3 +126,5 @@ export ADMIN_KEY=cesar
 export PORT=3002
 npm start
 */
+
+//https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
